@@ -2,6 +2,12 @@ This is an experiment in providing the best way to embed the ODE BPEL engine for
 in other environments, e.g. SCA and more specifically the JBoss Switchyard project.
 
 
+To run the current test application:
+
+1) run "mvn eclipse:eclipse" from the top level folder
+2) import project 'embedded' into Eclipse
+3) select the "Run As->Java Application" menu item associated with the Java class 'org.riftsaw.RiftsawEngine' 
+
 
 
 NOTES
