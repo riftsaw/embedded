@@ -221,7 +221,7 @@ public class RiftsawEngine {
 		_db = new Database(_odeConfig);
 		_db.setTransactionManager(_txMgr);
 
-		_db.setWorkRoot(new java.io.File("/tmp/h2"));
+		//_db.setWorkRoot(new java.io.File("/tmp/h2"));
 		
 		try {
 			_db.start();
@@ -272,7 +272,7 @@ public class RiftsawEngine {
 		  
 		// GPB: TO INVESTIGATE
 		//String clusterNodeName=JBossDSPFactory.getServerConfig().getClusterNodeName();
-		String clusterNodeName=null;
+		String clusterNodeName="node1";
 		
 		//logger.info("Scheduler node name: "+clusterNodeName);
 		  
