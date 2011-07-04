@@ -66,16 +66,8 @@ public class RiftsawEngine {
 			
 			Thread.sleep(5000);
 			
-			org.w3c.dom.Element mesgElem=DOMUtils.stringToDOM(
-							"<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:wsdl=\"http://www.jboss.org/bpel/examples/wsdl\">\r\n"+
-							"   <soapenv:Header/>\r\n"+
-							"   <soapenv:Body>\r\n"+
-							"      <wsdl:hello>\r\n"+
-							"         <TestPart>Hello</TestPart>\r\n"+
-							"      </wsdl:hello>\r\n"+
-							"   </soapenv:Body>\r\n"+
-							"</soapenv:Envelope>\r\n");
-			
+			org.w3c.dom.Element mesgElem=DOMUtils.stringToDOM("<message><TestPart>Hello</TestPart></message>");
+	
 			// Invoke the service
 			String serviceName="{http://www.jboss.org/bpel/examples/wsdl}HelloService";
 			String portName="HelloPort";
@@ -90,8 +82,6 @@ public class RiftsawEngine {
 			
 			// invoke ODE
 			try {
-				logger.info("GPB: INVOKING");
-				
 				engine.invoke(invocationContext);
 			} catch(Throwable t) {
 				// RIFTSAW-177 - prevent ODE specific exceptions being returned to ESB client where
@@ -99,7 +89,7 @@ public class RiftsawEngine {
 				throw new Exception("BPEL invoke failed: "+t);
 			}
 			
-			logger.info("RESPONSE="+invocationContext.getInvocationResult());
+			logger.info("RESPONSE="+DOMUtils.domToString(invocationContext.getInvocationResult()));
 			
 			//ret = handleResponse(invocationContext.getInvocationResult(),
 			//					invocationContext.getFaultName(), serviceName, proxy, f_toText);
